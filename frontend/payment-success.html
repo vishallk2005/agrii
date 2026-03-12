@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Success - AgriDirect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .success-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    .success-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: bounce 1s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .success-title {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .success-message {
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    
+    .success-details {
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 30px;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .detail-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .detail-label {
+      font-weight: 600;
+      color: var(--text-light);
+    }
+    
+    .detail-value {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="success-icon">✅</div>
+    <h1 class="success-title">Payment Successful!</h1>
+    
+    <div class="success-message">
+      Thank you for your purchase! Your order has been successfully placed and will be processed soon. You will receive a confirmation email with your order details.
+    </div>
+    
+    <div class="success-details">
+      <div class="detail-row">
+        <span class="detail-label">Order Status:</span>
+        <span class="detail-value">Processing</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Payment Method:</span>
+        <span class="detail-value">UPI (Razorpay)</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Estimated Delivery:</span>
+        <span class="detail-value">3-5 Business Days</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Customer Support:</span>
+        <span class="detail-value">support@agridirect.com</span>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <a href="index.html" class="btn-primary">Continue Shopping</a>
+      <a href="#" onclick="viewOrderHistory()" class="btn-secondary">View Orders</a>
+    </div>
+  </div>
+  
+  <script>
+    function viewOrderHistory() {
+      // Redirect to orders page or show order history
+      alert('Order history feature coming soon!');
+    }
+    
+    // Auto redirect to home after 10 seconds
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 10000);
+  </script>
+</body>
+</html>

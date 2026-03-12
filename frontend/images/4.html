@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriDirect</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Top Bar -->
+<header class="top-bar">
+  <!-- Menu Options -->
+  <nav class="top-menu">
+     <a href="4.html" class="home-link">🏠 Home</a>
+    <a href="#" onclick="openLogin('Farmer')">Farmer Login</a>
+    <a href="#" onclick="openLogin('Customer')">Customer Login</a>
+    <a href="#" onclick="openLogin('Admin')">Admin Login</a>
+    <a href="#about-section">About Us</a>
+    <a href="#">Feedback</a>
+  </nav>
+
+  <!-- Search Bar -->
+  <form class="search-top" onsubmit="handleSearch(event)" aria-label="Search form">
+    <div class="search-wrapper">
+      <input type="text" id="combinedSearchInput" name="search" placeholder="Search products..." autocomplete="off" />
+      <button type="submit" class="search-btn" aria-label="Search">🔍</button>
+    </div>
+    <!-- Dropdown attached to search bar -->
+    <div id="recentSearches" class="recent-searches" role="listbox" aria-hidden="true"></div>
+  </form>
+ <!-- Account Icon (hidden until logged in) -->
+<div id="accountMenu" class="account-menu" style="display:none;">
+  <span id="accountIcon" onclick="openProfile()">👤</span>
+</div>
+
+  </div>
+</div>
+
+</header>
+
+<!-- Floating Cart (square, bottom-right) -->
+<div class="floating-cart" onclick="toggleCart()" role="button" aria-label="View Cart">
+  🛒<span id="cart-count">0</span>
+</div>
+
+<!-- Cart Sidebar -->
+<aside class="cart-sidebar" id="cartSidebar">
+  <h2>Your Cart</h2>
+  <button onclick="goHome()" class="btn-secondary">← Back to Home</button>
+  <ul id="cartItems"></ul>
+  <p><strong>Total: ₹<span id="cartTotal">0</span></strong></p>
+  <button onclick="checkoutCart()">Checkout</button>
+</aside>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>AgriDirect</h1>
+    <h2 class="subtitle">An Online Agricultural Marketplace</h2>
+  </div>
+  <div class="slideshow">
+    <img src="/images/slideone.jpg" alt="Farming scene with crops">
+    <img src="/images/slidetwo.jpg" alt="Fresh produce market">
+    <img src="/images/slidethree.jpg" alt="Farmer with harvest">
+  </div>
+</section>
+
+<!-- Main Content -->
+<main class="main">
+  <!-- Category Buttons -->
+  <div class="categories">
+    <button onclick="filterProducts('all')" class="active">All</button>
+    <button onclick="filterProducts('vegetables')">Vegetables</button>
+    <button onclick="filterProducts('fruits')">Fruits</button>
+    <button onclick="filterProducts('flowers')">Flowers</button>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid" id="productGrid">
+    <div class="card" data-category="vegetables">
+      <img src="/images/tommato.jpeg" alt="Tomatoes">
+      <h3>Tomatoes</h3>
+      <p>₹40/kg</p><p>₹400 10kg bag</p>
+      <button onclick="addToCart('Tomatoes', 40)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="fruits">
+      <img src="/images/apple.jpeg" alt="Apples">
+      <h3>Apples</h3>
+      <p>₹120/kg</p><p>₹1200 10kg bag</p>
+      <button onclick="addToCart('Apples', 120)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="flowers">
+      <img src="/images/rose.jpeg" alt="Roses">
+      <h3>Roses</h3>
+      <p>₹10/stem</p><p>₹100 10 stems</p>
+      <button onclick="addToCart('Roses', 10)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="vegetables">
+      <img src="/images/carrot.jpeg" alt="Carrots">
+      <h3>Carrots</h3>
+      <p>₹35/kg</p><p>₹700 20kg bag</p>
+      <button onclick="addToCart('Carrots', 35)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="vegetables">
+      <img src="/images/potato.jpeg" alt="Potatoes">
+      <h3>Potatoes</h3>
+      <p>₹25/kg</p><p>₹1250 50kg bag</p>
+      <button onclick="addToCart('Potatoes', 25)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="fruits">
+      <img src="/images/banana.jpeg" alt="Bananas">
+      <h3>Bananas</h3>
+      <p>₹50/dozen</p><p>₹1000 20 dozen</p>
+      <button onclick="addToCart('Bananas', 50)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="fruits">
+      <img src="/images/mango.jpg" alt="Mangoes">
+      <h3>Mangoes</h3>
+      <p>₹120/kg</p><p>₹1200 10kg bag</p>
+      <button onclick="addToCart('Mangoes', 120)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="flowers">
+      <img src="/images/marigold.jpeg" alt="Marigold flowers">
+      <h3>Marigold</h3>
+      <p>₹30/bunch</p><p>₹300 10 bunches</p>
+      <button onclick="addToCart('Marigold', 30)">Add to Cart</button>
+    </div>
+    
+    <div class="card" data-category="flowers">
+      <img src="/images/sunflower.jpeg" alt="Sunflowers">
+      <h3>Sunflowers</h3>
+      <p>₹25/stem</p><p>₹100 10 stems</p>
+      <button onclick="addToCart('Sunflowers', 25)">Add to Cart</button>
+    </div>
+  </div>
+</main>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeLoginModal()">&times;</span>
+    <h2 id="loginTitle">Login</h2>
+    <form id="loginForm">
+      <!-- Dynamic role-specific inputs -->
+      <div id="roleSpecificInputs"></div>
+      
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="text" id="mobile" placeholder="Mobile" style="display:none;" />
+      <input type="email" id="email" placeholder="Email" style="display:none;" />
+      <input type="password" id="password" placeholder="Password" style="display:none;" />
+      <input type="text" id="address" placeholder="Address" style="display:none;" />
+      
+      <button type="submit">Login / Register</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- About Section -->
+<section id="about-section" class="about-section">
+  <h2>About AgriDirect</h2>
+  <p>
+    AgriDirect is an online agricultural marketplace connecting farmers directly with customers. 
+    Our mission is to empower farmers by providing them with a platform to showcase and sell their produce, 
+    while giving customers access to fresh and affordable products straight from the source.
+  </p>
+  <p>
+    With categories like vegetables, fruits, and flowers, we make shopping simple, direct, and transparent. 
+    By reducing middlemen, we ensure fair pricing for farmers and high-quality fresh produce for customers.
+  </p>
+  <p>
+    Together, let’s build a sustainable agricultural community and support our farmers.
+  </p>
+</section>
+
+<!-- Admin Data -->
+<section id="adminPanel" style="margin:30px; padding:20px; background:#f9f9f9; border:1px solid #ccc; border-radius:8px;">
+  <!-- Admin data (farmers + customers) will load here -->
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
